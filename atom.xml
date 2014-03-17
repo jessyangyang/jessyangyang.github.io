@@ -4,7 +4,7 @@
   <title><![CDATA[I'm Jess]]></title>
   <link href="http://jessyangyang.github.io/atom.xml" rel="self"/>
   <link href="http://jessyangyang.github.io/"/>
-  <updated>2014-03-17T11:32:47+08:00</updated>
+  <updated>2014-03-17T11:33:31+08:00</updated>
   <id>http://jessyangyang.github.io/</id>
   <author>
     <name><![CDATA[jessyangyang]]></name>
@@ -19,8 +19,6 @@
     <updated>2014-03-17T09:42:42+08:00</updated>
     <id>http://jessyangyang.github.io/blog/2014/03/17/hello-world</id>
     <content type="html"><![CDATA[<p>援引 Octopress 官网 (<a href="http://octopress.org/">http://octopress.org/</a>) 的副标题，Octopress is a blogging framework for hackers。简而言之 Octopress 是基于 Jekyll 的静态 Blog 生成和部署的框架/解决方案。你现在看到的我的 Blog 就是用 Octopress 搭建的。</p>
-
-<hr />
 
 <h2>目录：</h2>
 
