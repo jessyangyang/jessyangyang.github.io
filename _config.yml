@@ -3,7 +3,7 @@
 # ----------------------- #
 
 url: http://jessyangyang.github.io
-title: JessYangYang Blog
+title: I'm Jess
 subtitle: A blogging framework for hackers.
 author: jessyangyang
 simple_search: https://www.google.com/search
@@ -70,7 +70,7 @@ github_skip_forks: true
 
 # Twitter
 twitter_user:
-twitter_tweet_button: true
+twitter_tweet_button: false
 
 # Google +1
 google_plus_one: false
