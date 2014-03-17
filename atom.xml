@@ -4,10 +4,10 @@
   <title><![CDATA[JessYangYang Blog]]></title>
   <link href="http://jessyangyang.github.io/atom.xml" rel="self"/>
   <link href="http://jessyangyang.github.io/"/>
-  <updated>2014-03-17T10:13:37+08:00</updated>
+  <updated>2014-03-17T11:07:45+08:00</updated>
   <id>http://jessyangyang.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[jessyangyang]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -18,7 +18,32 @@
     <link href="http://jessyangyang.github.io/blog/2014/03/17/hello-world/"/>
     <updated>2014-03-17T09:42:42+08:00</updated>
     <id>http://jessyangyang.github.io/blog/2014/03/17/hello-world</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>援引 Octopress 官网 (<a href="http://octopress.org/">http://octopress.org/</a>) 的副标题，Octopress is a blogging framework for hackers。简而言之 Octopress 是基于 Jekyll 的静态 Blog 生成和部署的框架/解决方案。你现在看到的我的 Blog 就是用 Octopress 搭建的。</p>
+
+<p>本文包含：</p>
+
+<blockquote><ol>
+<li>各种系统环境中安装
+
+<pre><code>+ 在Mac OS下安装
++ 在Windows下安装
++ 在Linux下安装
+</code></pre></li>
+<li>部署在第三方服务器
+
+<ul>
+<li> 部署到Github Pages</li>
+<li> 部署到七牛云服务器</li>
+</ul>
+</li>
+<li>开始写博客</li>
+<li>发布到站点</li>
+<li>安装第三方插件 （评论、社交、etc&hellip;）</li>
+<li>小结</li>
+</ol>
+</blockquote>
+
+<hr />
 ]]></content>
   </entry>
   
