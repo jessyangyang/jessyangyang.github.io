@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[JessYangYang Blog]]></title>
+  <title><![CDATA[I'm Jess]]></title>
   <link href="http://jessyangyang.github.io/atom.xml" rel="self"/>
   <link href="http://jessyangyang.github.io/"/>
-  <updated>2014-03-17T11:12:53+08:00</updated>
+  <updated>2014-03-17T11:30:55+08:00</updated>
   <id>http://jessyangyang.github.io/</id>
   <author>
     <name><![CDATA[jessyangyang]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[hello world]]></title>
+    <title type="html"><![CDATA[使用Octopress搭建博客]]></title>
     <link href="http://jessyangyang.github.io/blog/2014/03/17/hello-world/"/>
     <updated>2014-03-17T09:42:42+08:00</updated>
     <id>http://jessyangyang.github.io/blog/2014/03/17/hello-world</id>
@@ -40,7 +40,7 @@
 </li>
 <li>开始写博客</li>
 <li>发布到站点</li>
-<li>安装第三方插件 （评论、社交、etc&hellip;）</li>
+<li>安装第三方插件 （主题、评论、社交、etc&hellip;）</li>
 <li>小结</li>
 </ol>
 </blockquote>
