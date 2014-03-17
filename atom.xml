@@ -4,7 +4,7 @@
   <title><![CDATA[I'm Jess]]></title>
   <link href="http://jessyangyang.github.io/atom.xml" rel="self"/>
   <link href="http://jessyangyang.github.io/"/>
-  <updated>2014-03-17T13:24:24+08:00</updated>
+  <updated>2014-03-17T14:42:21+08:00</updated>
   <id>http://jessyangyang.github.io/</id>
   <author>
     <name><![CDATA[jessyangyang]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[使用Octopress搭建博客]]></title>
-    <link href="http://jessyangyang.github.io/blog/2014/03/17/hello-world/"/>
-    <updated>2014-03-17T09:42:42+08:00</updated>
-    <id>http://jessyangyang.github.io/blog/2014/03/17/hello-world</id>
+    <link href="http://jessyangyang.github.io/blog/2014/03/17/shi-yong-octopressda-jian-bo-ke/"/>
+    <updated>2014-03-17T13:46:40+08:00</updated>
+    <id>http://jessyangyang.github.io/blog/2014/03/17/shi-yong-octopressda-jian-bo-ke</id>
     <content type="html"><![CDATA[<p><img src="http://www.logomoose.com/wp-content/uploads/2008/11/octopress.jpg"></p>
 
 <p>援引 <a href="http://octopress.org/">Octopress</a> 官网的副标题，<code>Octopress is a blogging framework for hackers</code>。简而言之 Octopress 是基于 <a href="http://github.com/mojombo/jekyll">Jekyll</a> 的静态 Blog 生成和部署的框架/解决方案。你现在看到的我的 Blog 就是用 Octopress 搭建的。</p>
@@ -50,6 +50,25 @@
 <hr />
 
 <h2></h2>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Hello World!]]></title>
+    <link href="http://jessyangyang.github.io/blog/2014/03/17/hello-world/"/>
+    <updated>2014-03-17T09:42:42+08:00</updated>
+    <id>http://jessyangyang.github.io/blog/2014/03/17/hello-world</id>
+    <content type="html"><![CDATA[<p>一直想开个私人博客，随便唠叨唠叨，顺便提升下写作水平。</p>
+
+<p>之前基于鸟叔 <a href="http://www.laruence.com/manual/">Yaf PHP Framework</a> 写过一个小的<code>CMS</code>，但是感觉还是有些臃肿，不够简洁。然后我想剥离出来直接JS生成，又得自个写<code>Theme</code>。哎，找了一些开源的<code>PHP MAKEDOWN BLOG</code>，还是太麻烦。</p>
+
+<p>最终选择了 <a href="http://octopress.org/">Octopress</a> 也是因为不用部署在服务器上，而且采用 <a href="https://github.com/fabpot/Twig/">Twig</a> 模板引擎也方便移植。</p>
+
+<p>但是在CentOS配置了很久没成功只是因为 Github Pages 用使用github帐号的用户名，没仔细看啊，费了大半天时间调试。</p>
+
+<p>也不知道说什么，先到这。。</p>
+
+<hr />
 ]]></content>
   </entry>
   
