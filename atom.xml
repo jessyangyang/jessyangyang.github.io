@@ -4,7 +4,7 @@
   <title><![CDATA[I'm Jess]]></title>
   <link href="http://jessyangyang.github.io/atom.xml" rel="self"/>
   <link href="http://jessyangyang.github.io/"/>
-  <updated>2014-03-17T11:43:20+08:00</updated>
+  <updated>2014-03-17T11:44:12+08:00</updated>
   <id>http://jessyangyang.github.io/</id>
   <author>
     <name><![CDATA[jessyangyang]]></name>
@@ -25,15 +25,17 @@
 <blockquote><ol>
 <li>各种系统环境中安装
 
-<pre><code>+ 在Mac OS下安装
-+ 在Windows下安装
-+ 在Linux下安装
-</code></pre></li>
+<ul>
+<li>在Mac OS下安装</li>
+<li>在Windows下安装</li>
+<li>在Linux下安装</li>
+</ul>
+</li>
 <li>部署在第三方服务器
 
 <ul>
-<li> 部署到Github Pages</li>
-<li> 部署到七牛云服务器</li>
+<li>部署到Github Pages</li>
+<li>部署到七牛云服务器</li>
 </ul>
 </li>
 <li>开始写博客</li>
