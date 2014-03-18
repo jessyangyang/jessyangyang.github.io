@@ -7,7 +7,11 @@
 	<meta name="author" content="jessyangyang">
 
 	
-	<meta name="description" content=" 配置 Octopress 小插件 ">
+	<meta name="description" content="配置 Octopress 小插件 目录： 主题
+评论
+社交
+更多
+小结 添加主题 Octopress 的在屌丝界欢迎程度不亚于 Wordpress ，很多大小牛给 Octopress 制作了主题，主要归功于大家都使用 Twig模板引擎，方便从各种框架移植过来。 Octopress模板库 ( &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -73,6 +77,543 @@
 				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name">配置 Octopress 小插件</h1>
 	<div class="entry-content" itemprop="articleBody"><p><img src="http://farm8.staticflickr.com/7366/13236566464_b0d185f6c7_o.png"></p>
+
+<h2>目录：</h2>
+
+<blockquote><ul>
+<li>主题</li>
+<li>评论</li>
+<li>社交</li>
+<li>更多</li>
+<li>小结</li>
+</ul>
+</blockquote>
+
+<ol>
+<li>添加主题</li>
+</ol>
+
+
+<p>Octopress 的在屌丝界欢迎程度不亚于 Wordpress ，很多大小牛给 Octopress 制作了主题，主要归功于大家都使用 Twig模板引擎，方便从各种框架移植过来。</p>
+
+<p>Octopress模板库 (<a href="http://opthemes.com/">http://opthemes.com/</a> ) 国外屌做的集合，很多好看主题。</p>
+
+<p><a href="https://github.com/shashankmehta/greyshade">Greyshade</a> 是 Shashank Mehta 开发的一款 Octopress 的主题，简洁大方所以被广泛使用，侧栏 Social Links 部分支持很多国外社交网站，但不支持新浪微博和 Dribbble，所以我小做修改增加了这两个网站的支持。</p>
+
+<p>只是修改了 <code>sass/parts/_header.scss</code> 和 <code>source/_includes/header.html</code>，增加了微博和 Dribbble 的 Icon（自 P），有需要的同学可以自取：<a href="https://github.com/allenhsu/greyshade">https://github.com/allenhsu/greyshade</a>
+或者直接用以下命令安装主题</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone git@github.com:allenhsu/greyshade.git .themes/greyshade
+</span><span class='line'>$ echo "\$greyshade: color;" &gt;&gt; sass/custom/_colors.scss //替换 color 为自定义的链接高亮颜色
+</span><span class='line'>$ rake "install[greyshade]"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>修改你的 _config.yml，加入以下选项：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>weibo_user: a11en # 微博数字 ID 或域名 ID
+</span><span class='line'>dribbble_user: allenhsu
+</span><span class='line'>weibo_share: true # 是否开启微博分享按钮</span></code></pre></td></tr></table></div></figure>
+
+
+<p>完事后记得 <code>generate &amp; deploy</code>，效果见我 blog 左侧，Icon 颜色分别取自微博和 Dribbble 各自 Logo 的主题色，希望各位觉得合适。</p>
+
+<ol>
+<li>侧边栏</li>
+</ol>
+
+
+<p>侧边栏可以添加的插件很多，新浪微博、豆瓣等很多网站都有相应的插件，也可以到 octopress的wiki页面寻找。</p>
+
+<p>侧边栏在<em>config.yml中设置，添加进<code>default_asides</code>中，先后顺序代表显示的 先后顺序，各个侧边栏插件代码放入相应的位置即可，自己添加的一般放入<code>source/_includes/custom/asides</code>，default_asides中默认从</em>includes之后路径开始写。</p>
+
+<p>2.1 最新文章</p>
+
+<p>首先说一下主题中可用的插件。
+·asides/recent_posts.html<code>是最近写的文章的一个 展示，添加到default_asides中即可显示，在</code>_config.yml<code>中可以设置显示最近 多少篇文章，</code>recent_posts: 5`，注意冒号后有空格。</p>
+
+<p>2.2 GitHub Repos
+<code>asides/github.html</code>则是GitHub repos的一个展示，可以直接到达你的GitHub页面， 在<code>_config.yml</code>中设置你的Github账号，并设置为true即可，如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Github repositories
+</span><span class='line'>github_user: 812lcl   #我的github
+</span><span class='line'>github_repo_count: 0
+</span><span class='line'>github_show_profile_link: true
+</span><span class='line'>github_skip_forks: true</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2.3 微博秀</p>
+
+<p>新浪微博是一个信息传播非常迅速的媒介，如果你热衷于微博，可以在侧边栏添加 自己的微博秀。首先需要获得自己的微博秀代码，链接为<code>http://app.weibo.com/tool/weiboshow</code>，进行相应的设置即可获得微博秀代码。
+然后在<code>source/_includes/custom/asides</code>创建<code>weibo.html</code>，添加如下代码，刚刚获得 的微博秀代码也要添加到相应位置：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt;
+</span><span class='line'>    &lt;h1&gt;新浪微博&lt;/h1&gt;
+</span><span class='line'>    &lt;ul id="weibo"&gt;
+</span><span class='line'>    &lt;li&gt;
+</span><span class='line'>
+</span><span class='line'>    &lt;!-- 在此插入获得的微博秀代码 --&gt;
+</span><span class='line'>
+</span><span class='line'>      &lt;/li&gt;
+</span><span class='line'>    &lt;/ul&gt;
+</span><span class='line'>&lt;/section&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后在<code>default_asides</code>中加入<code>custom/asides/weibo.html</code>即可显示你的微博秀了。</p>
+
+<p>2.4 豆瓣展示</p>
+
+<p>你可以通过豆瓣读书、豆瓣电影、豆瓣音乐等多方面展示你自己，豆瓣也提供了类似 微博秀的展示方式，添加方法也类似。获得豆瓣收藏秀的链接<code>http://www.douban.com/service/badgemakerjs</code>，根据自己的喜欢进行设置
+然后在<code>source/_includes/custom/asides</code>创建<code>douban.html</code>，添加如下代码， 刚刚获得的代码添加到<div>之间：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt;
+</span><span class='line'>  &lt;h1&gt;My Douban&lt;/h1&gt;
+</span><span class='line'>  &lt;div&gt;
+</span><span class='line'>  &lt;!--添加到这--&gt;
+</span><span class='line'>  &lt;/div&gt;
+</span><span class='line'>&lt;/section&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后在<code>default_asides</code>中加入<code>custom/asides/douban.html</code>显示你的豆瓣展示。</p>
+
+<p>2.5 访客地图</p>
+
+<p>效果如我的博客右侧那个精美的3D旋转地球所示，它可以显示访客数量，访客来自的 地域，既有装饰作用，又有统计作用。它也有2D效果版，可以根据自己喜欢进行设置， 地址在这里，然后获得代码。
+依然在<code>source/_includes/custom/asides</code>创建<code>earth.html</code>，代码如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt;
+</span><span class='line'>  &lt;h1&gt;访客地图&lt;/h1&gt;
+</span><span class='line'>  &lt;!--获得代码添加到这--&gt;
+</span><span class='line'>&lt;/section&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在<code>default_asides</code>中加入<code>custom/asides/earth.html</code>显示你定制的访客地图。</p>
+
+<p>2.6 酷站博客</p>
+
+<p>你有一些经常去的网站、博客，想推荐给大家，则可以在侧边栏加上一个“酷站博客” ，当然名字你自己取即可。
+在<code>source/_includes/custom/asides创建blog_link.html</code>，代码如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt;
+</span><span class='line'>&lt;h1&gt;酷站博客&lt;/h1&gt;
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>        &lt;li&gt;
+</span><span class='line'>        &lt;a href="http://blog.jobbole.com/"&gt;伯乐在线&lt;/a&gt;
+</span><span class='line'>        &lt;/li&gt;
+</span><span class='line'>        &lt;li&gt;
+</span><span class='line'>        &lt;a href="http://www.csdn.net/"&gt;CSDN&lt;/a&gt;
+</span><span class='line'>        &lt;/li&gt;
+</span><span class='line'>        &lt;li&gt;
+</span><span class='line'>        &lt;a href="http://www.cnblogs.com/"&gt;博客园&lt;/a&gt;
+</span><span class='line'>        &lt;/li&gt;
+</span><span class='line'>        &lt;li&gt;
+</span><span class='line'>        &lt;a href="http://coolshell.cn/"&gt;酷壳CoolShell&lt;/a&gt;
+</span><span class='line'>        &lt;/li&gt;
+</span><span class='line'>        &lt;li&gt;
+</span><span class='line'>        &lt;a href="http://www.cnblogs.com/Solstice/"&gt;陈硕&lt;/a&gt;
+</span><span class='line'>        &lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/section&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以自行添加喜爱网站，然后在<code>default_asides</code>中加入<code>custom/asides/blog_link.html</code>。
+看到这，你应该很熟悉添加侧边栏的流程了吧。</p>
+
+<p>2.7 最热文章</p>
+
+<p>Octopress Popular Posts Plugin是根据Google page rank计算，展示出权值最高的 文章，插件的项目主页为点击这里。
+这个插件的安装与之前的方法不同，首先在Gemfile中添加
+<code>gem 'octopress-popular-posts'</code>
+Gemfile中的是bundle安装时安装的所有依赖的软件，然后用bundle安装
+<code>bundle install</code>
+执行命令，将插件拷贝到你的source目录，如下：
+<code>bundle exec octopress-popular-posts install</code>
+到这就安装完了，可以设置显示了，在<code>_config.yml</code>中设置，增加下面一行：
+<code>popular_posts_count: 5      # Posts in the sidebar Popular Posts section</code>
+设置边栏显示文章数，最后在default_asides中添加<code>custom/asides/popular_posts.html</code>，即可显示出来。
+这样就设置好了，同时建议将缓存的page rank文件添加进你的<code>.gitignore</code>中
+<code>.page_rank</code></p>
+
+<p>2.8 3D标签云与标签列表</p>
+
+<p>octopress默认的只支持 <code>category</code> 的分类，而并没有tag。category和tag分别代表有序/ 无序的知识点归纳。一篇文章只能属于一个category，但可以有多个tag。原来的 plugin下只有<code>category_generator.rb</code>插件，实现category功能，在github上有两个插件帮助实现了tag生成和tag cloud功能插件1，插件2。 但似乎并不支持中文，而<code>category_generator.rb</code>是支持中文的，所以我有样学样，改 成了支持中文的，并且实现了3D标签云的，插件已经上传到github。clone到你博客的目录即可。</p>
+
+<p>包含文件如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> ├─ plugins/
+</span><span class='line'>    │  ├─ category_generator.rb
+</span><span class='line'>    │  ├─ category_list.rb
+</span><span class='line'>    │  ├─ category_tag_cloud.rb
+</span><span class='line'>    │  ├─ tag_generator.rb
+</span><span class='line'>    │  └─ tag_list.rb
+</span><span class='line'>    └─ source/
+</span><span class='line'>       └─ _includes/
+</span><span class='line'>          └─ custom/
+</span><span class='line'>             └─ asides/
+</span><span class='line'>                ├─ category_cloud.html
+</span><span class='line'>                ├─ category_list.html
+</span><span class='line'>                ├─ tag_cloud.html
+</span><span class='line'>                └─ tag_list.html</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中 <code>category_generator.rb</code>和<code>tag_generator.rb</code> 定义了根据文章的 category 和 tag 标签分类存储文章的方法，<code>category_tag_cloud.rb</code> 则可以定义了根据category或tag 生成3D标签云的方法。<code>category_list.rb</code> 和 <code>tag_list.rb</code> 实现了将所有文章的category和tag列出来的方法，其中category可以显示文章个数，tag根据此标签文章多少， 大小随着改变。</p>
+
+<p>四个HTML文件则是category和tag的列表和3D标签云的侧边栏实现。需要哪个，在default_asides中添加即可。</p>
+
+<p>还有一点需要注意，在<code>_config.yml</code>中默认设置了category的目录，需自己加入tag目录</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>category_dir: blog/categories
+</span><span class='line'>tag_dir: blog/tags</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样可以观看效果了，不过3D效果的标签云，对于不支持flash的浏览器无效，如safari。
+标签功能的实现，我参考了一下几篇文章：
+为octopress添加分类(category)列表
+给 Octopress 加上标签功能
+给octopress添加3D标签云</p>
+
+<p>2.9 相关文章功能</p>
+
+<p>此功能即根据当前阅读的文章，分析博客中其他与此相近的文章，进行推荐的一个功能 ，在octopress wiki中推荐的第三方插件中有一个插件实现此功能，项目主页点击这里。该插件，利用octopress自带的LSI实现对文章分析分类，然后进行推荐，但当文章较多时分类过慢，它推荐 安装GSL来进行分类。我安装过这个功能，但不知道它是根据什么规则分类，而且之后 不知道安装了什么，之后每次分类都会出错。你可以自己尝试一下，项目主页都有 详细的步骤。
+就在我想放弃这个功能的时候，我发现了它――<code>related_posts-jekyll_plugin</code>。 这个插件很简单，只需下载<code>_plugins/related_posts.rb</code>放在自己的 plugins 文件夹中， 然后在想添加相关文章推荐的地方添加如下语句：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt;
+</span><span class='line'>  &lt;h2&gt;相关文章：&lt;/h2&gt;
+</span><span class='line'>  &lt;ul class="posts"&gt;
+</span><span class='line'>       
+</span><span class='line'>          &lt;li class="related"&gt;
+</span><span class='line'>          &lt;a href="/blog/2014/03/17/shi-yong-octopressda-jian-bo-ke/"&gt;使用Octopress搭建博客&lt;/a&gt;
+</span><span class='line'>          &lt;/li&gt;
+</span><span class='line'>      
+</span><span class='line'>          &lt;li class="related"&gt;
+</span><span class='line'>          &lt;a href="/blog/2014/03/17/hello-world/"&gt;Hello World!&lt;/a&gt;
+</span><span class='line'>          &lt;/li&gt;
+</span><span class='line'>      
+</span><span class='line'>  &lt;/ul&gt;
+</span><span class='line'> &lt;/section&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>我是在 <code>source/_layouts/post.html</code> 中加入的这些语句，这个html文件是打开博文时 的布局，我将相关文章添加在博文的结束处。
+这个插件是根据文章的tag进行分类的，根据所有博文与本篇文章共同tag的多少依次 排序进行推荐，还是很简单有效的。</p>
+
+<p>参考这里
+3. 社会化评论与分享
+3.1 友言和加网</p>
+
+<p>octopress内置了disqus评论系统，不适合我国基本国情，所以需要用一些国内的第三 方评论系统，如友言、多说，可以以微博、人人、QQ等账号登陆发表评论，网站通过 验证后可以对评论进行分析，管理。
+多说评论系统可参见为 Octopress 添加多说评论系统，不多做介绍。
+我主要使用的是友言的一套评论系统及插件，分享使用的是加网JiaThis。首先注册 友言账号，否则无法进行后台管理。注册之后获得代码， 添加到<code>source/_includes/post/share_comment.html</code>。 加网点击这里，定制自己喜欢的样式， 获得代码也添加到上述文件中。
+<code>share_comment.html</code>文件中代码如下（每个人不同）：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;!-- JiaThis BEGIN --&gt;
+</span><span class='line'>&lt;div class="jiathis_style_32x32"&gt;
+</span><span class='line'>        &lt;a class="jiathis_button_qzone"&gt;&lt;/a&gt;
+</span><span class='line'>        &lt;a class="jiathis_button_tsina"&gt;&lt;/a&gt;
+</span><span class='line'>        &lt;a class="jiathis_button_tqq"&gt;&lt;/a&gt;
+</span><span class='line'>        &lt;a class="jiathis_button_weixin"&gt;&lt;/a&gt;
+</span><span class='line'>        &lt;a class="jiathis_button_renren"&gt;&lt;/a&gt;
+</span><span class='line'>        &lt;a href="http://www.jiathis.com/share?uid=1850190" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"&gt;&lt;/a&gt;
+</span><span class='line'>        &lt;a class="jiathis_counter_style"&gt;&lt;/a&gt;
+</span><span class='line'>&lt;/div&gt;
+</span><span class='line'>&lt;script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1361705530382241" charset="utf-8"&gt;&lt;/script&gt;
+</span><span class='line'>&lt;!-- JiaThis END --&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;!-- Baidu Button BEGIN 
+</span><span class='line'>&lt;div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"&gt;
+</span><span class='line'>        &lt;a class="bds_tsina"&gt;&lt;/a&gt;
+</span><span class='line'>        &lt;a class="bds_qzone"&gt;&lt;/a&gt;
+</span><span class='line'>        &lt;a class="bds_tqq"&gt;&lt;/a&gt;
+</span><span class='line'>        &lt;a class="bds_renren"&gt;&lt;/a&gt;
+</span><span class='line'>        &lt;a class="bds_t163"&gt;&lt;/a&gt;
+</span><span class='line'>        &lt;a class="bds_hi"&gt;&lt;/a&gt;
+</span><span class='line'>        &lt;span class="bds_more"&gt;&lt;/span&gt;
+</span><span class='line'>        &lt;a class="shareCount"&gt;&lt;/a&gt;
+</span><span class='line'>&lt;/div&gt;
+</span><span class='line'>&lt;script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6839808" &gt;&lt;/script&gt;
+</span><span class='line'>&lt;script type="text/javascript" id="bdshell_js"&gt;&lt;/script&gt;
+</span><span class='line'>&lt;script type="text/javascript"&gt;
+</span><span class='line'>        document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</span><span class='line'>&lt;/script&gt;
+</span><span class='line'> Baidu Button END --&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;!-- UY BEGIN --&gt;
+</span><span class='line'>&lt;div id="uyan_frame"&gt;&lt;/div&gt;
+</span><span class='line'>&lt;script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"&gt;&lt;/script&gt;
+</span><span class='line'>&lt;!-- UY END --&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中有一段代码注释掉了，那是我曾经添加的百度分享的代码，如果使用其他分享或 评论，代码也可以添加到这。</p>
+
+<p>现在功能代码在 <code>share_comment.html</code> 中了，下面需要使其显示到博文的底部。
+首先在 <code>_config.yml</code> 中添加开关：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># comment and share
+</span><span class='line'>comment_share: true</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后在 <code>source/_includes/post/sharing.html</code> 中添加如下代码：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'></span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后需要使你的网站通过友言的验证，才可以进行后台管理，后台可以进行评论管理、 社交影响力分析、和评论栏的风格功能设置。</p>
+
+<p>3.2 评论热榜和最新评论侧边栏</p>
+
+<p>友言提供了多个嵌入式组件，如评论热榜、最新评论、评论计数等。我们可以将他们 做成侧边栏进行展示，或在首页文章列表中，显示每篇文章的评论数目。
+首先在你的友言后台管理中找到安装设置->嵌入式组件获得评论热榜和最新评论的 代码，分别创建 <code>source/_includes/custom/asides/uyan_hotcmt.html</code> 和<code>source/_includes/custom/asides/uyan_newcmt.html</code>，代码如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt;
+</span><span class='line'>&lt;h1&gt;评论热榜&lt;/h1&gt;
+</span><span class='line'>&lt;div id="uyan_hotcmt_unit"&gt;&lt;/div&gt;
+</span><span class='line'>        &lt;script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"&gt;&lt;/script&gt;
+</span><span class='line'>&lt;/section&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt;
+</span><span class='line'>&lt;h1&gt;最新评论&lt;/h1&gt;
+</span><span class='line'>&lt;div id="uyan_newcmt_unit"&gt;&lt;/div&gt;
+</span><span class='line'>        &lt;script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"&gt;&lt;/script&gt;
+</span><span class='line'>&lt;/section&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后再 <code>_config.yml</code> 的 <code>default_asides</code> 中添加其路径即可显示在侧边栏中。
+友言评论框、评论热榜、最新评论可以在后台进行设置，改变设置并不需要更改代码。</p>
+
+<p>3.3 评论计数显示</p>
+
+<p>友言提供评论计数功能，可以将每篇文章的评论数显示在博客首页相应文章题目旁。 实现方法为：在 <code>source/_includes/article.html中</code>
+`</p>
+
+<p><time datetime="2014-03-18T11:47:52+08:00" data-updated="true" itemprop="datePublished">Mar 18<span>th</span>, 2014</time>`
+的后边填入嵌入组件中获得的评论计数的代码，需要修改其中一些内容</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> | &lt;a href="#comments" id="uyan_count_unit" du="" su=""&gt;0条评论&lt;/a&gt;
+</span><span class='line'>  &lt;script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1850190"&gt;&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>为博文添加原文链接及声明</li>
+</ol>
+
+
+<p>可以为你的每篇博文末尾加上原文链接，方法很简单，只需创建<code>plugins/post_footer_filter.rb</code>，代码如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># post_footer_filter.rb
+</span><span class='line'># Append every post some footer infomation like original url 
+</span><span class='line'># Kevin Lynx
+</span><span class='line'># 7.26.2012
+</span><span class='line'>#
+</span><span class='line'>require './plugins/post_filters'
+</span><span class='line'>
+</span><span class='line'>module AppendFooterFilter
+</span><span class='line'>        def append(post)
+</span><span class='line'>                author = post.site.config['author']
+</span><span class='line'>                url = post.site.config['url']
+</span><span class='line'>                pre = post.site.config['original_url_pre']
+</span><span class='line'>                post.content + %Q[&lt;p class='post-footer'&gt;
+</span><span class='line'>                        #{pre or "original link:"}&lt;a href='#{post.full_url}'&gt;#{post.full_url}&lt;/a&gt;&lt;br/&gt;&nbsp;written by &lt;a href='#{url}'&gt;#{author}&lt;/a&gt;&nbsp;posted at &lt;a href='#{url}'&gt;#{url}&lt;/a&gt;&lt;/p&gt;]
+</span><span class='line'>        end
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'>module Jekyll
+</span><span class='line'>        class AppendFooter &lt; PostFilter
+</span><span class='line'>                include AppendFooterFilter
+</span><span class='line'>                def pre_render(post)
+</span><span class='line'>                        post.content = append(post) if post.is_post?
+</span><span class='line'>                end
+</span><span class='line'>        end
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'>Liquid::Template.register_filter AppendFooterFilter</span></code></pre></td></tr></table></div></figure>
+
+
+<p>并可以针对这一区域的样式进行美化，在 <code>sass/custom/_style.scss</code> 末尾增加下列内容：<code>.post-footer{margin-top:10px;padding:5px;background:none repeat scroll 0pt 0pt #eee;font-size:90%;color:gray}</code>
+尊重原创，此功能来源为octopress每篇文章添加一个文章信息。</p>
+
+<ol>
+<li>公益404</li>
+</ol>
+
+
+<p>在source目录下创建 <code>404.markdown</code>，添加如下代码，即可实现公益404的功能，当你的网页出错找不到时，可以为公益尽一份力。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>---
+</span><span class='line'>layout: page
+</span><span class='line'>title: "404 Error"
+</span><span class='line'>date: 2013-10-10 19:17
+</span><span class='line'>comments: false
+</span><span class='line'>sharing: false
+</span><span class='line'>footer: false
+</span><span class='line'>---
+</span><span class='line'>&lt;script type="text/javascript" src="http://www.qq.com/404/search_children,js" charset="utf-8&gt;&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>好了先写到这了，还有一些东西没写，等后续再写吧。</p>
 </div>
 
 </article>
