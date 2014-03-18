@@ -90,12 +90,13 @@
 
 <ul>
 <li>部署到Github Pages</li>
-<li>部署到七牛云服务器</li>
+<li><a href="http://www.imallen.com/blog/2013/10/16/deploying-octopress-to-qiniu.html">部署到七牛云服务器</a></li>
 </ul>
 </li>
 <li>配置和使用 Octopress</li>
-<li>发布到站点</li>
-<li>安装第三方插件 （主题、评论、社交、etc&hellip;）</li>
+<li>域名解析</li>
+<li>配置功能插件 （主题、评论、社交、etc&hellip;）</li>
+<li>更多</li>
 <li>小结</li>
 </ol>
 </blockquote>
@@ -382,6 +383,67 @@ git安装之后，利用git命令将 octopress 从github上clone到本机，如�
 
 
 <p>建议：最好把里面的<code>twitter</code>相关的信息全部删掉，否则由于GFW的原因，将会造成页面load很慢。同理，修改定制文件<code>/source/_includes/custom/head.html</code> 把google的自定义字体去掉。from<a href="http://blog.devtang.com/blog/2012/02/10/setup-blog-based-on-github/">唐巧的博文中—配置</a>。</p>
+
+<h3>开始写博客</h3>
+
+<p>Octopress为我们提供了一些task来创建博文和页面。博文必须存储在 <code>source/_posts</code> 目录下，并且需要按照Jekyll的命名规范对文章进行命名：<code>YYYY-MM-DD-post-title.markdown</code>。文章的名字会被当做url的一部分，而其中的日期用于对博文的区分和排序。</p>
+
+<p>通过Octopress提供的task可以正确的按照命名规范创建一个博文，并且在博文中会附带常用的一些yaml元数据。只需要在终端输入如下命令：
+<code>rake new_post["title"]</code></p>
+
+<p>其中title为博文的文件名，创建出来的文件默认是markdown格式。上面的命令会创建出这样一个文件：<code>source/_posts/2013-08-03-title.markdown</code>。打开这个文件，可以看到里面有如下一些内容了(告诉Jekyll博客引擎如何处理博文和页面)：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>---
+</span><span class='line'>layout: post
+</span><span class='line'>title: "title"
+</span><span class='line'>date: 2013-08-03 16:36
+</span><span class='line'>comments: true
+</span><span class='line'>categories: 
+</span><span class='line'>---</span></code></pre></td></tr></table></div></figure>
+
+
+<p>接着我们就可以在这个文件中写我们的博文啦。完成之后，我们可以预览和部署博文。下面是创建并部署博文的一个完整过程：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake new_post["New Post"] //生成博文框架，然后修改生成的文件即可
+</span><span class='line'>$ rake generate // 生成静态文件
+</span><span class='line'>$ git add .
+</span><span class='line'>$ git commit -am "Some comment here." 
+</span><span class='line'>$ git push origin source
+</span><span class='line'>$ rake watch // 检测文件变化，实时生成新内容
+</span><span class='line'>$ rake preview // 在本机4000端口生成访问内容
+</span><span class='line'>$ rake deploy // 发布文件</span></code></pre></td></tr></table></div></figure>
+
+
+<p>参考：<a href="http://octopress.org/docs/blogging/">Blogging Basics</a></p>
+
+<h2>域名解析</h2>
+
+<p>我们可以给GitHub上的page指定一个域名，具体做法如下2个步骤</p>
+
+<ol>
+<li><p>给repo配置域名
+在source根目录下新建一个名为<code>CNAME</code>的文件，并把你的域名填写进去，例如<code>beyondvincent.com</code>。这样做的目的是告诉GitHub服务器开始将<code>repo</code>中的page(例如<code>beyondvincent.github.io</code>)指向到某个域名中。</p></li>
+<li><p>配置DNS(我的域名是在godaddy上购买的)
+添加一条A记录： <code>@ 204.232.175.78</code> 在CNAME中添加一条记录： <code>http beyondvincent.github.com</code></p></li>
+</ol>
+
+
+<h2>配置功能插件</h2>
 
 <hr />
 
